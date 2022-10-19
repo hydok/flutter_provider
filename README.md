@@ -1,6 +1,6 @@
 # provider_test
 
-A new Flutter project.
+provider sample 
 
 ## Getting Started
 
