@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_test/model/movie.dart';
 import 'package:provider_test/provider/movie_provider.dart';
-import 'package:provider_test/repository/movie_repository.dart';
 
 class MovieList extends StatefulWidget {
   const MovieList({Key? key}) : super(key: key);
