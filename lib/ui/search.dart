@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_test/provider/count_provider.dart';
 
-class Search extends StatefulWidget {
+class Search extends StatelessWidget {
   const Search({Key? key}) : super(key: key);
 
-  @override
-  State<Search> createState() => _SearchState();
-}
-
-class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:provider_test/provider/bottom_navigation_provider.dart';
 import 'package:provider_test/provider/count_provider.dart';
 import 'package:provider_test/provider/movie_provider.dart';
-import 'package:provider_test/ui/home.dart';
+import 'package:provider_test/ui/bottom_nav.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomePage(),
+        home: BottomNav(),
       ),
     );
   }

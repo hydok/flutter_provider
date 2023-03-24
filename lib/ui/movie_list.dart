@@ -3,20 +3,46 @@ import 'package:provider/provider.dart';
 import 'package:provider_test/model/movie.dart';
 import 'package:provider_test/provider/movie_provider.dart';
 
-class MovieList extends StatefulWidget {
-  const MovieList({Key? key}) : super(key: key);
 
-  @override
-  _MovieListState createState() => _MovieListState();
-}
-
-class _MovieListState extends State<MovieList> {
-  MovieProvider _movieProvider = MovieProvider();
-
-  @override
+/*  @override
   void dispose() {
     _movieProvider.clearMovies();
     super.dispose();
+  }
+
+    //init next call
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    _movieProvider = Provider.of<MovieProvider>(context, listen: false); //provider init
+    _movieProvider.loadMovies();
+  }
+  */
+
+class MovieList extends StatelessWidget {
+  MovieList({Key? key}) : super(key: key);
+
+  MovieProvider _movieProvider = MovieProvider();
+
+  @override
+  Widget build(BuildContext context) {
+    _movieProvider = Provider.of<MovieProvider>(context, listen: false); //provider init
+    _movieProvider.loadMovies();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('movie'),
+      ),
+      body: Consumer<MovieProvider>(
+        builder: (context, value, child){
+          if(value.movies.length > 0){
+            return _makeListView(value.movies);
+          }
+          return Center(child: CircularProgressIndicator(),);
+        },
+      ),
+    );
   }
 
   Widget _makeMovieOne(Movie movie) {
@@ -88,29 +114,5 @@ class _MovieListState extends State<MovieList> {
         itemCount: movies.length);
   }
 
-  //init next call
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
 
-    _movieProvider = Provider.of<MovieProvider>(context, listen: false); //provider init
-    _movieProvider.loadMovies();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('1'),
-      ),
-      body: Consumer<MovieProvider>(
-       builder: (context, value, child){
-         if(value.movies.length > 0){
-           return _makeListView(value.movies);
-         }
-         return Center(child: CircularProgressIndicator(),);
-       },
-      ),
-    );
-  }
 }
